@@ -1,5 +1,5 @@
 // pages/posts/posts.js
-const posts = require('../../data/posts.js');// require不支持绝对路径
+const posts = require('../../data/posts-data.js'); // require不支持绝对路径
 Page({
 
   /**
@@ -12,57 +12,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-    this.setData({ posts: posts});
+  onLoad: function(options) {
+    this.setData({
+      posts: posts
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
+  // 进入文章详情页面
+  navToArticle: function(event) {
+    // wxml 中使用 'data-post-id' (data-前缀)给 dataset 中添加自定义变量 postId
+    const postId = event.currentTarget.dataset.postId;
+    wx.navigateTo({
+      url: 'posts-detail/posts-detail?postId=' + postId,
+    })
   }
 })

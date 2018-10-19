@@ -1,17 +1,17 @@
 <template name="posts-item">
   <view class="post-container">
     <view class="post-author-date">
-      <image class="post-author" src="{{item.authorAvatar}}"></image>
-      <text class="post-date">{{item.publishDate}}</text>
+      <image class="post-author" src="{{authorAvatar}}"></image>
+      <text class="post-date">{{publishDate}}</text>
     </view>
-    <text class="post-title">{{item.title}}</text>
-    <image class="post-pic" src="{{item.contentPic}}"></image>
-    <text class="post-desc">{{item.desc}}</text>
+    <text class="post-title">{{title}}</text>
+    <image class="post-pic" src="{{contentPic}}"></image>
+    <text class="post-desc">{{desc}}</text>
     <view class="post-info">
       <image src="/images/icons/msg.png"></image>
-      <text>{{item.msgNum}}</text>
+      <text>{{msgNum}}</text>
       <image src="/images/icons/view.png"></image>
-      <text>{{item.viewNum}}</text>
+      <text>{{viewNum}}</text>
     </view>
   </view>
 </template>

@@ -1,0 +1,19 @@
+<!--pages/posts/posts-detail/posts-detail.wxml-->
+<view class="container">
+  <view class="header">
+    <image class="post-pic" src="{{post.contentPic}}"></image>
+    <image class="music-img" src="/images/icons/music-start.png"></image>
+  </view>
+  <view class="post-info">
+    <image class="avatar" src="{{post.authorAvatar}}"></image>
+    <text>Published: </text>
+    <text>{{post.publishDate}}</text>
+  </view>
+  <text class="title">{{post.title}}</text>
+  <view class="collect-share">
+    <view class="cross-line"></view>
+    <image class="share-img" src="/images/icons/share.png"></image>
+    <image src="/images/icons/collection.png"></image>
+  </view>
+  <text class="content">{{post.content}}</text>
+</view>

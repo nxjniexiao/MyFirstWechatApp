@@ -19,6 +19,8 @@
   </swiper>
   <!-- 新闻内容 -->
   <view wx:for="{{posts}}" wx:key="{{item.title}}">
-    <template is="posts-item" data="{{item}}" />
+    <view catchtap="navToArticle" data-post-id="{{item.postId}}">
+      <template is="posts-item" data="{{...item}}" />
+    </view>
   </view>
 </view>
