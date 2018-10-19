@@ -1,40 +1,24 @@
 <!--pages/posts/posts.wxml-->
+<!-- 从文件中导入模板 -->
+<import src="posts-item/posts-item-template.wxml" />
 <view>
+  <!-- 轮播图模板 -->
+  <template name="slide-item">
+    <swiper-item>
+      <image src="{{src}}"></image>
+      <view class="slide-desc">
+        <text>{{title}}</text>
+      </view>
+    </swiper-item>
+  </template>
+  <!-- 轮播图 -->
   <swiper autoplay="true" indicator-dots="true" indicator-color="white" indicator-active-color="skyblue">
-    <swiper-item>
-      <image src="/images/slide-1.jpg"></image>
-      <view class="slide-desc">
-        <text>Cruise Ship</text>
-      </view>
-    </swiper-item>
-    <swiper-item>
-      <image src="/images/slide-2.jpg"></image>
-      <view class="slide-desc">
-        <text>Oil Tanker</text>
-      </view>
-    </swiper-item>
-    <swiper-item>
-      <image src="/images/slide-3.jpg"></image>
-      <view class="slide-desc">
-        <text>Container Ship</text>
-      </view>
-    </swiper-item>
+    <template is="slide-item" data="{{src: '/images/slide-1.jpg', title: 'Cruise Ship'}}" />
+    <template is="slide-item" data="{{src: '/images/slide-2.jpg', title: 'Oil Tanker'}}" />
+    <template is="slide-item" data="{{src: '/images/slide-3.jpg', title: 'Container Ship'}}" />
   </swiper>
+  <!-- 新闻内容 -->
   <view wx:for="{{posts}}" wx:key="{{item.title}}">
-    <view class="post-container">
-      <view class="post-author-date">
-        <image class="post-author" src="{{item.authorAvatar}}"></image>
-        <text class="post-date">{{item.publishDate}}</text>
-      </view>
-      <text class="post-title">{{item.title}}</text>
-      <image class="post-pic" src="{{item.contentPic}}"></image>
-      <text class="post-desc">{{item.desc}}</text>
-      <view class="post-info">
-        <image src="/images/icons/msg.png"></image>
-        <text>{{item.msgNum}}</text>
-        <image src="/images/icons/view.png"></image>
-        <text>{{item.viewNum}}</text>
-      </view>
-    </view>
+    <template is="posts-item" data="{{item}}" />
   </view>
 </view>

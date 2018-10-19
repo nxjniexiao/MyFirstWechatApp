@@ -1,4 +1,5 @@
 /* pages/posts/posts.wxss */
+@import 'posts-item/posts-item-template.wxss';
 swiper{
   width: 100%;
   height: 500rpx;
@@ -25,51 +26,4 @@ swiper .slide-desc text{
   flex-direction: column;
   border-top: 1px solid #ededed;
   border-bottom: 1px solid #ededed;
-}
-/* .post-Container .post-author{
-
-} */
-.post-container .post-author{
-  width: 60rpx;
-  height: 60rpx;
-  vertical-align: middle;
-  margin-left: 20rpx;
-  margin-right: 40rpx;
-}
-.post-container .post-date{
-  font-size: 26rpx;
-  vertical-align: middle;
-  color: #666;
-}
-.post-container .post-title{
-  margin: 20rpx;
-  font-size: 34rpx;
-  font-weight: 600;
-  color: #333;
-}
-.post-container .post-pic{
-  width: 750rpx;
-  height: 300rpx;
-}
-.post-container .post-desc{
-  margin: 30rpx 20rpx;
-  line-height: 40rpx;
-  font-size: 28rpx;
-  letter-spacing: 2rpx;
-  color: #666;
-}
-.post-container .post-info{
-  flex-direction: row;
-}
-.post-container .post-info image{
-  width: 32rpx;
-  height: 32rpx;
-  vertical-align: middle;
-  margin-left: 20rpx;
-  margin-right: 10rpx;
-}
-.post-container .post-info text{
-  font-size: 26rpx;
-  vertical-align: middle;
-  color: #666;
 }
