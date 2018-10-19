@@ -9,47 +9,32 @@
     </swiper-item>
     <swiper-item>
       <image src="/images/slide-2.jpg"></image>
-        <view class="slide-desc">
+      <view class="slide-desc">
         <text>Oil Tanker</text>
       </view>
     </swiper-item>
     <swiper-item>
       <image src="/images/slide-3.jpg"></image>
-        <view class="slide-desc">
+      <view class="slide-desc">
         <text>Container Ship</text>
       </view>
     </swiper-item>
   </swiper>
-  <view class="post-container">
-    <view class="post-author-date">
-      <image class="post-author" src="/images/avatar/1.png"></image>
-      <text class="post-date">10 September 2018</text>
-    </view>
-    <text class="post-title"> WEBINAR 30 Oct: Cyber security threats in shipping – are you prepared?</text>
-    <image class="post-pic" src="/images/posts/post-1.jpg"></image>
-    <text class="post-desc"> See the big picture and discover recommended steps to build up cyber security. Register for one of the two free sessions!</text>
-    <view class="post-info">
-      <image src="/images/icons/msg.png"></image>
-      <text>26</text>
-      <image src="/images/icons/view.png"></image>
-      <text>92</text>
+  <view wx:for="{{posts}}" wx:key="{{item.title}}">
+    <view class="post-container">
+      <view class="post-author-date">
+        <image class="post-author" src="{{item.authorAvatar}}"></image>
+        <text class="post-date">{{item.publishDate}}</text>
+      </view>
+      <text class="post-title">{{item.title}}</text>
+      <image class="post-pic" src="{{item.contentPic}}"></image>
+      <text class="post-desc">{{item.desc}}</text>
+      <view class="post-info">
+        <image src="/images/icons/msg.png"></image>
+        <text>{{item.msgNum}}</text>
+        <image src="/images/icons/view.png"></image>
+        <text>{{item.viewNum}}</text>
+      </view>
     </view>
   </view>
 </view>
-  <view class="post-container">
-    <view class="post-author-date">
-      <image class="post-author" src="/images/avatar/2.png"></image>
-      <text class="post-date">10 September 2018</text>
-    </view>
-    <text class="post-title"> New Maritime Forecast to 2050 available for download</text>
-    <image class="post-pic" src="/images/posts/post-2.jpg"></image>
-    <text class="post-desc"> A rise of 32% in seaborne-trade measured in tonne-miles is predicted for 2016–2030. The report also focusses on the challenges of decarbonizing the shipping industry.</text>
-    <view class="post-info">
-      <image src="/images/icons/msg.png"></image>
-      <text>26</text>
-      <image src="/images/icons/view.png"></image>
-      <text>92</text>
-    </view>
-  </view>
-
-

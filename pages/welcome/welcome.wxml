@@ -2,7 +2,7 @@
 <view class="container">
   <image class="user-avatar" src="/images/avatar.png"></image>
   <text class="user-text">Nie Xiaojun</text>
-  <view class="moto-container">
+  <view class="moto-container" bindtap="start">
     <text class="moto">开启小程序之旅</text>
   </view>
 </view>
