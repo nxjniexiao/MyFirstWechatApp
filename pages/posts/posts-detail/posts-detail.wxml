@@ -2,7 +2,7 @@
 <view class="container">
   <view class="header">
     <image class="post-pic" src="{{post.contentPic}}"></image>
-    <image class="music-img" src="/images/icons/music-start.png"></image>
+    <image class="music-img" catchtap="handleMusic" src="{{musicIsPlaying?'/images/icons/music-stop.png':'/images/icons/music-start.png'}}"></image>
   </view>
   <view class="post-info">
     <image class="avatar" src="{{post.authorAvatar}}"></image>
@@ -12,8 +12,8 @@
   <text class="title">{{post.title}}</text>
   <view class="collect-share">
     <view class="cross-line"></view>
-    <image class="share-img" src="/images/icons/share.png"></image>
-    <image src="/images/icons/collection.png"></image>
+    <image class="share-img" catchtap="shareNews" src="/images/icons/share.png"></image>
+    <image catchtap="switchCollection" src="{{currPostCollected?'/images/icons/collection.png':'/images/icons/collection-anti.png'}}"></image>
   </view>
   <text class="content">{{post.content}}</text>
 </view>
