@@ -1,0 +1,4 @@
+/* pages/movies/movies.wxss */
+Page {
+  background-color: #F2F2F2;
+}

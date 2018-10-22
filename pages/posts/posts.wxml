@@ -1,6 +1,6 @@
 <!--pages/posts/posts.wxml-->
 <!-- 从文件中导入模板 -->
-<import src="posts-item/posts-item-template.wxml" />
+<import src="/templates/posts-item/posts-item-template.wxml" />
 <view>
   <!-- 轮播图模板 -->
   <template name="slide-item">

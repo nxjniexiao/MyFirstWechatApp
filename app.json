@@ -1,10 +1,27 @@
 {
   "pages": [
+    "pages/movies/movies",
     "pages/welcome/welcome",
     "pages/posts/posts",
     "pages/posts/posts-detail/posts-detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#405f80"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/posts/posts",
+        "text": "新闻",
+        "iconPath": "/images/icons/news.png",
+        "selectedIconPath": "/images/icons/news-active.png"
+      },
+      {
+        "pagePath": "pages/movies/movies",
+        "text": "电影",
+        "iconPath": "/images/icons/movies.png",
+        "selectedIconPath": "/images/icons/movies-active.png"
+      }
+    ]
   }
 }

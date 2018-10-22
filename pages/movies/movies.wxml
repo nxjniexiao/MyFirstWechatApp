@@ -1,0 +1,4 @@
+<!--pages/movies/movies.wxml-->
+<movies-list listTitle="正在热映" moviesList="{{moviesBeingRelease}}"></movies-list>
+<movies-list listTitle="即将上映" moviesList="{{moviesWillBeReleased}}"></movies-list>
+<movies-list listTitle="高分电影" moviesList="{{highScoreMovies}}"></movies-list>

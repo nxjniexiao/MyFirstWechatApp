@@ -1,5 +1,5 @@
 /* pages/posts/posts.wxss */
-@import 'posts-item/posts-item-template.wxss';
+@import '/templates/posts-item/posts-item-template.wxss';
 swiper{
   width: 100%;
   height: 500rpx;
