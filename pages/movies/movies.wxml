@@ -1,4 +1,26 @@
 <!--pages/movies/movies.wxml-->
-<movies-list category="moviesBeingRelease" list-title="正在热映" movies-list="{{moviesBeingRelease}}"></movies-list>
-<movies-list category="moviesWillBeReleased" list-title="即将上映" movies-list="{{moviesWillBeReleased}}"></movies-list>
-<movies-list category="highScoreMovies" list-title="高分电影" movies-list="{{highScoreMovies}}"></movies-list>
+<view class="movies-container">
+  <view class="search-container">
+    <icon type="search" size="14"></icon>
+    <input 
+    type="text" 
+    placeholder="输入内容搜索" 
+    value="{{searchContent}}"
+    bindfocus="onFocus" 
+    bindblur="onBlur"
+    bindinput="onInput"
+    />
+    <icon wx:if="{{showClearBtn}}" type="clear" size="14" catchtap="clearSearchContent"></icon>
+  </view>
+  <view wx:if="{{!searchResult.length}}" class="movies">
+    <movies-list category="moviesBeingRelease" list-title="正在热映" movies-list="{{moviesBeingRelease}}">
+    </movies-list>
+    <movies-list category="moviesWillBeReleased" list-title="即将上映" movies-list="{{moviesWillBeReleased}}">
+    </movies-list>
+    <movies-list category="highScoreMovies" list-title="高分电影" movies-list="{{highScoreMovies}}">
+    </movies-list>
+  </view>
+  <view wx:else>
+  搜索结果
+  </view>
+</view>

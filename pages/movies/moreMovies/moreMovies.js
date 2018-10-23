@@ -51,10 +51,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('刷新');
     const total = this.data.total;
     const currTotal = this.data.moviesList.length;
-    if ( total > currTotal ){
+    if ( total > currTotal ) {
+      wx.showLoading({
+        title: '加载中',
+      });
       let url = this.data.requestUrl;
       url = createUrlWithOpt(url, currTotal, 21);
       getMoviesList(url, (resData) => {
@@ -64,7 +66,29 @@ Page({
         this.setData({
           moviesList: newMoviesList
         });
+        wx.hideLoading()
+      });
+    } else {
+      wx.showToast({
+        title: '已经到底了',
+        icon: 'none',
+        duration: 1000
       });
     }
+  },
+
+  /**
+   * 监听用户下拉刷新事件
+   */
+  onPullDownRefresh(){
+    let url = this.data.requestUrl;
+    url = createUrlWithOpt(url, 0, 21);
+    getMoviesList(url, (resData) => {
+      const moviesList = resData.moviesList;
+      this.setData({
+        moviesList
+      });
+      wx.stopPullDownRefresh();
+    });
   }
 })

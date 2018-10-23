@@ -1,4 +1,16 @@
 /* pages/movies/movies.wxss */
 Page {
   background-color: #F2F2F2;
+  font-size: 24rpx;
+}
+.search-container {
+  display: flex;
+  flex-direction: row;
+}
+.search-container icon {
+  padding: 13px 13px;
+}
+.search-container input {
+  height: 40px;
+  flex: 1;
 }

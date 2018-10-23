@@ -11,6 +11,10 @@ Page({
     moviesBeingRelease: [],
     moviesWillBeReleased: [],
     highScoreMovies: [],
+    // showSearchResult: false,
+    showClearBtn: false,
+    searchContent: '',
+    searchResult: []
   },
 
   /**
@@ -42,4 +46,45 @@ Page({
       });
     });
   },
+  // 搜索框聚焦
+  onFocus: function(event){
+    this.setData({
+      showSearchResult: true
+    });
+  },
+  // 搜索框失去焦点
+  onBlur: function (event) {
+    this.setData({
+      showSearchResult: false
+    });
+  },
+  // 键盘输入时触发
+  onInput: function (event) {
+    console.log('input:', event.detail.value);
+    const value = event.detail.value;
+    if(value){
+      // 输入框不为空
+      if (!this.data.showClearBtn){
+        // 显示清空按钮
+        this.setData({
+          showClearBtn: true
+        });
+      }
+    } else {
+      // 输入框为空
+      if (this.data.showClearBtn) {
+        // 隐藏清空按钮
+        this.setData({
+          showClearBtn: false
+        });
+      }
+    }
+  },
+  // 清空搜索框内容
+  clearSearchContent: function (event) {
+    this.setData({
+      searchContent: '',
+      showClearBtn: false
+    })
+  }
 })
