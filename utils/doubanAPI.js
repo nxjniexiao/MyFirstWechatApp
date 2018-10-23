@@ -3,52 +3,60 @@
   获取指定电影信息:
  */
 const doubanAPI = {
+  // url 后增加请求数量参数
+  createUrlWithOpt: function (url, start, count){
+    if (arguments.length < 3) {
+      throw new Error('createUrlWithOpt(url, start, count)应至少传入三个参数');
+    };
+    if(!url){
+      throw new Error('createUrlWithOpt(url, start, count)中的 url 不能为空');
+    };
+    if (typeof start !== 'number') {
+      throw new Error('createUrlWithOpt(url, start, count)中的 start 必须为数字');
+    };
+    if (typeof count !== 'number') {
+      throw new Error('createUrlWithOpt(url, start, count)中的 count 必须为数字');
+    }
+    const opts = '?apikey=0df993c66c0c636e29ecbb5344252a4a' + '&start='+ start +'&count=' + count;
+    return url + opts;
+  },
   // 获取电影列表
   // moviesListName
-  getMoviesList: function (url, countLimit, callback) {
-    if(!url){
-      throw new Error('getMoviesList(url, countLimit, callback)中的url不能为空');
+  getMoviesList: function (url, callback) {
+    if(arguments.length < 2) {
+      throw new Error('getMoviesList(url, callback)必须传入2个参数');
     }
-    if (typeof countLimit !== 'number') {
-      throw new Error('getMoviesList(url, countLimit, callback)中的countLimit必须为数字');
+    if(!url){
+      throw new Error('getMoviesList(url, callback)中的 url 不能为空');
     }
     if (typeof callback !== 'function') {
-      throw new Error('getMoviesList(url, countLimit, callback)中的callback必须为函数');
+      throw new Error('getMoviesList(url, callback)中的 callback 必须为函数');
     }
-    if (countLimit < 0){
-      countLimit = 0;
-    }
-    // const opt = '?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=3';// 请求前三条
-    const count = countLimit ? ('&start=0&count=' + 'countLimit') : '';// 请求的电影数量限制
-    const opt = '?apikey=0df993c66c0c636e29ecbb5344252a4a' + count;
     wx.request({
-      url: url + opt,
+      url: url,
       method: 'GET',
       header: {
         'Content-Type': 'json'
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          // top250 API 返回的 json 结构与其他两个不一样
-          const originalMoviesList = res.data.subjects || res.data.entries;
+          // 服务器返回的电影总数
+          const total = res.data.total;
+          let originalMoviesList = res.data.subjects;
           if (originalMoviesList) {
-            // top250 API 中的 rating 为对象，其他的为评分字符串
-            if (url == 'https://api.douban.com/v2/movie/top250') {
-              originalMoviesList.forEach((list, index) => {
-                originalMoviesList[index].rating = originalMoviesList[index].rating.average;
-              })
-            }
-            // 筛选需要的数据
             const newMoviesList = [];
             originalMoviesList.forEach((list, index) => {
               newMoviesList[index] = {
                 id: list.id,
                 title: list.title,
                 moviePoster: list.images.large,
-                rating: list.rating,
+                rating: list.rating.average,
               };
             });
-            callback(newMoviesList);
+            callback({
+              total, 
+              moviesList: newMoviesList
+              });
           }
         }
       }

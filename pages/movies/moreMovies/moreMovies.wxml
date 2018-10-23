@@ -1,2 +1,4 @@
 <!--pages/movies/moreMovies/moreMovies.wxml-->
-<text>pages/movies/moreMovies/moreMovies.wxml</text>
+<view class="movies-grid-wrapper">
+  <movies-grid movies-list="{{moviesList}}"></movies-grid>
+</view>

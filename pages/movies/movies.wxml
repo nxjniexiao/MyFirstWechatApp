@@ -1,4 +1,4 @@
 <!--pages/movies/movies.wxml-->
-<movies-list category="moviesBeingRelease" listTitle="正在热映" moviesList="{{moviesBeingRelease}}"></movies-list>
-<movies-list category="moviesWillBeReleased" listTitle="即将上映" moviesList="{{moviesWillBeReleased}}"></movies-list>
-<movies-list category="highScoreMovies" listTitle="高分电影" moviesList="{{highScoreMovies}}"></movies-list>
+<movies-list category="moviesBeingRelease" list-title="正在热映" movies-list="{{moviesBeingRelease}}"></movies-list>
+<movies-list category="moviesWillBeReleased" list-title="即将上映" movies-list="{{moviesWillBeReleased}}"></movies-list>
+<movies-list category="highScoreMovies" list-title="高分电影" movies-list="{{highScoreMovies}}"></movies-list>

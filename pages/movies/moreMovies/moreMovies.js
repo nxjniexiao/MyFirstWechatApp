@@ -1,11 +1,15 @@
 // pages/movies/moreMovies/moreMovies.js
+const getMoviesList = require('../../../utils/doubanAPI.js').getMoviesList;
+const createUrlWithOpt = require('../../../utils/doubanAPI.js').createUrlWithOpt;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    requestUrl: '',
+    total: null,
+    moviesList: []
   },
 
   /**
@@ -13,54 +17,54 @@ Page({
    */
   onLoad: function (options) {
     const moviesListCategory = options.category;// 电影列表的种类
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+    const categorys = {
+      moviesBeingRelease: {
+        title: '正在热映',
+        url: 'https://api.douban.com/v2/movie/in_theaters'
+        },
+      moviesWillBeReleased: {
+        title: '即将上映',
+        url: 'https://api.douban.com/v2/movie/coming_soon'
+        },
+      highScoreMovies: {
+        title: '高分电影',
+        url: 'https://api.douban.com/v2/movie/top250'
+        },
+    }
+    // 设置页面标题
+    wx.setNavigationBarTitle({
+      title: categorys[moviesListCategory].title,
+    })
+    this.setData({
+      requestUrl: categorys[moviesListCategory].url
+    })
+    // 向服务器发起请求：正在热映的电影
+    const url = createUrlWithOpt(categorys[moviesListCategory].url, 0, 21);
+    getMoviesList(url, (resData) => {
+      this.setData({
+        ...resData
+      });
+    });
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    console.log('刷新');
+    const total = this.data.total;
+    const currTotal = this.data.moviesList.length;
+    if ( total > currTotal ){
+      let url = this.data.requestUrl;
+      url = createUrlWithOpt(url, currTotal, 21);
+      getMoviesList(url, (resData) => {
+        const moviesList = resData.moviesList;
+        let newMoviesList = this.data.moviesList;
+        newMoviesList = newMoviesList.concat(moviesList);
+        this.setData({
+          moviesList: newMoviesList
+        });
+      });
+    }
   }
 })

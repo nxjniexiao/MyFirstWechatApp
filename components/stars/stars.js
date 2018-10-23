@@ -22,7 +22,7 @@ Component({
     starsArray: []
   },
 
-  // 周期函数
+  // 生命周期函数
   attached: function() {
     this.setData({
       fixedScore: this.properties.score.toFixed(1),
