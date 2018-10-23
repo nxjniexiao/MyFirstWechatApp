@@ -2,7 +2,7 @@
 <view class="movies-list-container">
   <view class="movies-list-header">
     <text>{{listTitle}}</text>
-    <text class='right'>更多 ></text>
+    <text data-category="{{category}}" catchtap='navToMoreMovies' class='right'>更多 ></text>
   </view>
   <view class="movies-list">
     <movie wx:for="{{moviesList}}" wx:key="{{item.title}}" imgSrc="{{item.moviePoster}}" title="{{item.title}}" score="{{item.rating}}"></movie>
