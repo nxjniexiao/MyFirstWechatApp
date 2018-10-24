@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "movies-list": "/components/moviesList/moviesList"
+    "movies-list": "/components/moviesList/moviesList",
+    "movies-grid": "/components/moviesGrid/moviesGrid"
   },
   "navigationBarTitleText": "电影"
 }

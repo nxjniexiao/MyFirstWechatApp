@@ -1,9 +1,11 @@
 /* components/moviesGrid/moviesGrid.wxss */
 .movies-grid-container {
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  background-color: #fff;
 }
 .movies-grid-container movie{
   margin-bottom: 20px;

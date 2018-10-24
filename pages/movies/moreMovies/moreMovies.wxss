@@ -1,4 +1,1 @@
 /* pages/movies/moreMovies/moreMovies.wxss */
-.movies-grid-wrapper {
-  margin-top: 20rpx
-}

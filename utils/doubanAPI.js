@@ -17,7 +17,13 @@ const doubanAPI = {
     if (typeof count !== 'number') {
       throw new Error('createUrlWithOpt(url, start, count)中的 count 必须为数字');
     }
-    const opts = '?apikey=0df993c66c0c636e29ecbb5344252a4a' + '&start='+ start +'&count=' + count;
+    // ?apikey=0df993c66c0c636e29ecbb5344252a4a
+    let opts = '';
+    if(/\?/.test(url)){
+      opts = '&apikey=0df993c66c0c636e29ecbb5344252a4a' + '&start=' + start + '&count=' + count;
+    }else{
+      opts = '?apikey=0df993c66c0c636e29ecbb5344252a4a' + '&start=' + start + '&count=' + count;
+    }
     return url + opts;
   },
   // 获取电影列表
