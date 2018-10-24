@@ -5,7 +5,13 @@ Component({
    */
   properties: {
     score: {
-      type: Number
+      type: Number,
+      observer: function(newVal, oldVal, changePath){
+        this.setData({
+          fixedScore: newVal.toFixed(1),
+          starsArray: this.getStarsArray(newVal)
+        });
+      }
     }
   },
 
@@ -20,14 +26,6 @@ Component({
       'empty': '/images/icons/star-empty.png'
     },
     starsArray: []
-  },
-
-  // 生命周期函数
-  attached: function() {
-    this.setData({
-      fixedScore: this.properties.score.toFixed(1),
-      starsArray: this.getStarsArray(this.properties.score)
-    })
   },
 
   /**
