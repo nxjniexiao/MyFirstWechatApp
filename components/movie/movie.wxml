@@ -1,5 +1,5 @@
 <!--components/movie/movie.wxml-->
-<view class="movie-container">
+<view class="movie-container" catchtap="naveToMovieDetails" data-movie-id="{{movieId}}">
   <image class="movie-pic" src="{{imgSrc}}"></image>
   <text class="movie-title">{{title}}</text>
   <stars score="{{score}}"></stars>

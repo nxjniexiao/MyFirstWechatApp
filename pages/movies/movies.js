@@ -14,7 +14,7 @@ Page({
     showClearBtn: false,
     searchContent: '',
     searchTotal: null,
-    searchResponseTotal: null,// API 返回的电影数目小于 count
+    searchResponseTotal: null, // API 返回的电影数目小于 count
     searchResult: [],
     requestUrl: null
   },
@@ -28,32 +28,47 @@ Page({
     let urlHighScoreMovies = 'https://api.douban.com/v2/movie/top250';
     // 向服务器发起请求：正在热映的电影
     urlBeingRelease = createUrlWithOpt(urlBeingRelease, 0, 3);
-    getMoviesList(urlBeingRelease, (resData) => {
+    getMoviesList(urlBeingRelease).then(resData => {
       this.setData({
         moviesBeingRelease: resData.moviesList
       });
-    });
+    }).catch(err => {
+      wx.showToast({
+        title: '正在热映的电影加载出错',
+        icon: 'none'
+      });
+    })
     // 向服务器发起请求：即将上映的电影
     urlWillBeReleased = createUrlWithOpt(urlWillBeReleased, 0, 3);
-    getMoviesList(urlWillBeReleased, (resData) => {
+    getMoviesList(urlWillBeReleased).then(resData => {
       this.setData({
         moviesWillBeReleased: resData.moviesList
+      });
+    }).catch(err => {
+      wx.showToast({
+        title: '即将上映的电影加载出错',
+        icon: 'none'
       });
     });
     // 向服务器发起请求：高分电影
     urlHighScoreMovies = createUrlWithOpt(urlHighScoreMovies, 0, 3);
-    getMoviesList(urlHighScoreMovies, (resData) => {
+    getMoviesList(urlHighScoreMovies).then(resData => {
       this.setData({
         highScoreMovies: resData.moviesList
+      });
+    }).catch(err => {
+      wx.showToast({
+        title: '高分电影加载出错',
+        icon: 'none'
       });
     });
   },
   // 键盘输入时触发
-  onInput: function (event) {
+  onInput: function(event) {
     const value = event.detail.value;
-    if(value){
+    if (value) {
       // 输入框不为空
-      if (!this.data.showClearBtn){
+      if (!this.data.showClearBtn) {
         // 显示清空按钮
         this.setData({
           showClearBtn: true
@@ -65,7 +80,7 @@ Page({
         searchResult: [],
         requestUrl: ''
       });
-      this._scrollToTop();// 显示热映等电影内容时，立即滚动到顶部
+      this._scrollToTop(); // 显示热映等电影内容时，立即滚动到顶部
       if (this.data.showClearBtn) {
         // 隐藏清空按钮
         this.setData({
@@ -75,19 +90,19 @@ Page({
     }
   },
   // 清空搜索框内容
-  clearSearchContent: function (event) {
+  clearSearchContent: function(event) {
     this.setData({
       searchContent: '',
       showClearBtn: false,
       searchResult: [],
       requestUrl: ''
     });
-    this._scrollToTop();// 显示热映等电影内容时，立即滚动到顶部
+    this._scrollToTop(); // 显示热映等电影内容时，立即滚动到顶部
   },
   // 点击完成按钮时触发
-  onConfirm: function (event) {
+  onConfirm: function(event) {
     let content = event.detail.value;
-    if(content) {
+    if (content) {
       wx.showLoading({
         title: '加载中',
       });
@@ -98,13 +113,20 @@ Page({
         requestUrl: url
       });
       url = createUrlWithOpt(url, 0, 18);
-      getMoviesList(url, (resData) => {
+      // 搜索电影
+      getMoviesList(url).then(resData => {
         this.setData({
           searchTotal: resData.total,
           searchResult: resData.moviesList,
           searchResponseTotal: 18
         });
         wx.hideLoading();
+      }).catch(err => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '搜索电影出错',
+          icon: 'none'
+        });
       });
     } else {
       // 搜索框内容为空
@@ -115,11 +137,11 @@ Page({
     }
   },
   /**
- * 页面上拉触底事件的处理函数
- */
-  onReachBottom: function () {
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
     let url = this.data.requestUrl;
-    if(url){
+    if (url) {
       const total = this.data.searchTotal;
       const currTotal = this.data.searchResponseTotal;
       if (total > currTotal) {
@@ -127,7 +149,8 @@ Page({
           title: '加载中',
         });
         url = createUrlWithOpt(url, currTotal, 18);
-        getMoviesList(url, (resData) => {
+        // 请求更多的搜索结果
+        getMoviesList(url).then(resData => {
           const moviesList = resData.moviesList;
           let newMoviesList = this.data.searchResult;
           newMoviesList = newMoviesList.concat(moviesList);
@@ -136,18 +159,23 @@ Page({
             searchResponseTotal: currTotal + 18
           });
           wx.hideLoading();
+        }).catch(err => {
+          wx.hideLoading();
+          wx.showToast({
+            title: '加载更多出错',
+            icon: 'none'
+          })
         });
       } else {
         wx.showToast({
           title: '已经到底了',
-          icon: 'none',
-          duration: 1000
+          icon: 'none'
         });
       }
     }
   },
   // 使页面滚动到顶部
-  _scrollToTop: function () {
+  _scrollToTop: function() {
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 0
