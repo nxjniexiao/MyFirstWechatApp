@@ -6,9 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    local_directors: '',
-    local_casts: '',
-    local_type: ''
+    isFolded: true,
+    str_directors: '',
+    str_casts: '',
+    str_type: ''
   },
 
   /**
@@ -21,12 +22,12 @@ Page({
     const movieId = options.movieId;
     // console.log(movieId);
     const apiKey = '?apikey=0df993c66c0c636e29ecbb5344252a4a';
-    const url = 'https://api.douban.com/v2/movie/subject/' + '26425063' + apiKey;
+    const url = 'https://api.douban.com/v2/movie/subject/' + movieId + apiKey;
     getMovieDetails(url).then(movieData => {
       this.setData({
-        local_directors: this._concatNames(movieData.directors),
-        local_casts: this._concatNames(movieData.casts),
-        local_type: movieData.genres.join(' / '),
+        str_directors: this._concatNames(movieData.directors),
+        str_casts: this._concatNames(movieData.casts),
+        str_type: movieData.genres.join(' / '),
         ...movieData
       });
       wx.hideLoading();
@@ -50,5 +51,11 @@ Page({
       }
     });
     return namesArr.join(' / ');
+  },
+  // 展开或折叠剧情简介
+  handleContent: function(event) {
+    this.setData({
+      isFolded: !this.data.isFolded
+    });
   }
 })

@@ -15,7 +15,7 @@
 </template>
 <!-- 人物列表模板 -->
 <template name="personList">
-  <view class="person-container">
+  <view class="person-container background-color">
     <text class="title">{{listName}}</text>
     <scroll-view class="person" scroll-x="true">
       <template 
@@ -31,14 +31,14 @@
   <!-- 头部 -->
   <view class="movie-header-container">
     <view class="blur" style="background-image:url({{images.large}})"></view>
-    <view class="movie-header">
+    <view class="movie-header background-color">
       <image class="movie-poster" src="{{images.large}}" />
       <view class="movie-info">
         <text class="title">{{title}}</text>
         <text class="sub-title">{{original_title}}</text>
-        <template is="infoItem" data="{{key:'导演:',value:local_directors}}" />
-        <template is="infoItem" data="{{key:'演员:',value:local_casts}}" />
-        <template is="infoItem" data="{{key:'类型:',value:local_type}}" />
+        <template is="infoItem" data="{{key:'导演:',value:str_directors}}" />
+        <template is="infoItem" data="{{key:'演员:',value:str_casts}}" />
+        <template is="infoItem" data="{{key:'类型:',value:str_type}}" />
         <view class="item-key-value">
           <text class="item-key">评分:</text>
           <stars score="{{rating.average}}" />
@@ -47,9 +47,9 @@
     </view>
   </view>
   <!-- 剧情简介 -->
-  <view class="movie-synopsis-container">
+  <view class="movie-synopsis-container background-color">
     <text class="synopsis-title">剧情简介</text>
-    <text class="synopsis-content">{{summary}}</text>
+    <text class="synopsis-content {{isFolded ? 'fold' : ''}}" catchtap="handleContent">{{summary}}</text>
   </view>
   <!-- 导演 -->
   <template is="personList" data="{{listName:'导演',personList: directors}}"/>

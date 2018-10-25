@@ -11,7 +11,13 @@
   width: 20rpx;
   height: 20rpx;
 }
-.stars-container text {
-  line-height: 20rpx;/* 控制 text 的高度 */
+.stars-container .score {
+  font-size: 20rpx;
+  line-height: 20rpx;
   margin-left: 20rpx;
+}
+.stars-container .tips {
+  font-size: 20rpx;
+  line-height: 20rpx;
+  margin-left: 10rpx;
 }

@@ -1,6 +1,6 @@
 /* pages/movies/movieDetails/movieDetails.wxss */
-page{
-  background-color: rgba(124, 126, 102, 0.7);
+.background-color {
+  background-color: rgba(124, 126, 102, 0.5);
 }
 /* 电影条目信息模板样式 */
 text {
@@ -17,7 +17,7 @@ text {
   height: 32rpx;
   flex: 0 0 72rpx;
   text-align: left;
-  color: #afb3a4;
+  color: rgba(255,255,255,0.8);
 }
 
 .item-key-value .item-value {
@@ -29,7 +29,6 @@ text {
 }
 
 /* 电影详情页面头部 */
-
 .movie-header-container {
   position: relative;
   /* overflow: hidden; */
@@ -101,41 +100,46 @@ text {
 }
 
 .movie-synopsis-container .synopsis-content {
+  /* height: 190rpx; */
   font-size: 28rpx;
   line-height: 38rpx;
-  height: 190rpx;
+}
+.movie-synopsis-container .synopsis-content.fold {
   overflow: hidden;
-  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
 /* 电影人物头像模板样式 */
 .person-pic-container {
+  width: 160rpx;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* 待调整 */
-  /* width: 160rpx;
-  height: 270rpx; */
-  
 }
 .person-pic-container .pic {
-  width: 160rpx;
+  width: 100%;
   height: 224rpx;
   border-radius: 8rpx;
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: center center;
 }
-.person-pic-container name {
+.person-pic-container .name {
+  width: 100%;
   font-size: 24rpx;
   line-height: 48rpx;
+  /* 父元素 display: inline-block 使 align-items 失效，
+  为使文字居中，设置如下两个属性*/
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-/* 演员 */
+/* 导演 & 演员 */
 .person-container {
   width: 100%;
   padding: 30rpx;
+  padding-bottom: 0;
 }
 .person-container .title{
   font-size: 32rpx;
@@ -144,10 +148,10 @@ text {
 .person-container .person{
   width: 690rpx;
   height: 272rpx;
-  white-space: nowrap;/* 重要，否则无法滚动 */
+  white-space: nowrap;/* 重要 */
 }
 .person-container .person .person-pic-container{
-  display: inline-block;
+  display: inline-block;/* 重要，但会使 align-items 失效: 文字不能水平居中*/
   margin-right: 40rpx;
 }
 .person-container .person .person-pic-container:last-child{

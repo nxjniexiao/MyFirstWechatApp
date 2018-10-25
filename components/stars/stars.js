@@ -7,6 +7,7 @@ Component({
     score: {
       type: Number,
       observer: function(newVal, oldVal, changePath){
+        console.log(newVal);
         this.setData({
           fixedScore: newVal.toFixed(1),
           starsArray: this.getStarsArray(newVal)
@@ -25,7 +26,7 @@ Component({
       'half': '/images/icons/star-half.png',
       'empty': '/images/icons/star-empty.png'
     },
-    starsArray: []
+    starsArray: ['empty', 'empty', 'empty', 'empty', 'empty']
   },
 
   /**
