@@ -1,7 +1,5 @@
 /* pages/movies/movieDetails/movieDetails.wxss */
-page{
-  background-color: rgba(124, 126, 102, 0.5);
-}
+
 /* 电影条目信息模板样式 */
 text {
   color: #fff;
@@ -17,7 +15,7 @@ text {
   height: 32rpx;
   flex: 0 0 72rpx;
   text-align: left;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .item-key-value .item-value {
@@ -27,10 +25,19 @@ text {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+page {
+  min-height: 100%;
+}
+
+/* 详情页面 container */
 .movie-details-container {
+  min-height: 100vh;
   /* 修正scroll-view 过宽，导致页面大于屏幕宽度 */
   overflow: hidden;
+  background-color: rgba(124, 126, 102, 0.5);
 }
+
 /* 电影详情页面头部 */
 .movie-header-container {
   position: relative;
@@ -40,7 +47,7 @@ text {
 .blur {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 360rpx;
   filter: blur(10px);
   z-index: -999;
   background-repeat: no-repeat;
@@ -49,7 +56,7 @@ text {
 }
 
 .movie-header {
-  padding: 78rpx 30rpx 0;
+  padding: 80rpx 30rpx 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -107,18 +114,21 @@ text {
   font-size: 28rpx;
   line-height: 38rpx;
 }
+
 .movie-synopsis-container .synopsis-content.fold {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
+
 /* 电影人物头像模板样式 */
 .person-pic-container {
   width: 160rpx;
   display: flex;
   flex-direction: column;
 }
+
 .person-pic-container .pic {
   width: 100%;
   height: 224rpx;
@@ -127,6 +137,7 @@ text {
   background-size: 100% auto;
   background-position: center center;
 }
+
 .person-pic-container .name {
   width: 100%;
   font-size: 24rpx;
@@ -138,25 +149,30 @@ text {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 /* 导演 & 演员 */
 .person-container {
   width: 100%;
   padding: 30rpx;
   padding-bottom: 0;
 }
-.person-container .title{
+
+.person-container .title {
   font-size: 32rpx;
   line-height: 64rpx;
 }
-.person-container .person{
+
+.person-container .person {
   width: 690rpx;
   height: 272rpx;
-  white-space: nowrap;/* 重要 */
+  white-space: nowrap; /* 重要 */
 }
-.person-container .person .person-pic-container{
-  display: inline-block;/* 重要，但会使 align-items 失效: 文字不能水平居中*/
+
+.person-container .person .person-pic-container {
+  display: inline-block; /* 重要，但会使 align-items 失效: 文字不能水平居中*/
   margin-right: 40rpx;
 }
-.person-container .person .person-pic-container:last-child{
+
+.person-container .person .person-pic-container:last-child {
   margin-right: 0;
 }

@@ -16,5 +16,5 @@
 .movies-list-container .movies-list{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;/* 每个元素之间的间隔相等 */
+  justify-content: space-around;/* space-evenly 每个元素之间的间隔相等 安卓不兼容 */
 }

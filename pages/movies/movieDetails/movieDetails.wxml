@@ -9,7 +9,7 @@
 <!-- 人物头像模板 -->
 <template name="personPic">
   <view class="person-pic-container">
-    <view class="pic" style="background-image:url({{src}})"></view>
+    <view class="pic" style="background-image:url({{src}})" data-url="{{src}}" catchtap="showImage"></view>
     <text class="name">{{name}}</text>
   </view>
 </template>
@@ -18,21 +18,17 @@
   <view class="person-container">
     <text class="title">{{listName}}</text>
     <scroll-view class="person" scroll-x="true">
-      <template 
-      is="personPic" 
-      wx:for="{{personList}}" 
-      wx:key="{{item.id}}" 
-      data="{{src:item.avatars.large,name:item.name}}" />
+      <template is="personPic" wx:for="{{personList}}" wx:key="{{item.id}}" data="{{src:item.avatars.large,name:item.name}}" />
     </scroll-view>
   </view>
 </template>
 <!-- 模板结束 -->
 <view class="movie-details-container">
+  <view class="blur" style="background-image:url({{images.large}})"></view>
   <!-- 头部 -->
   <view class="movie-header-container">
-    <view class="blur" style="background-image:url({{images.large}})"></view>
     <view class="movie-header">
-      <image class="movie-poster" src="{{images.large}}" />
+      <image class="movie-poster" src="{{images.large}}" data-url="{{images.large}}" catchtap="showImage" />
       <view class="movie-info">
         <text class="title">{{title}}</text>
         <text class="sub-title">{{original_title}}</text>
@@ -52,7 +48,7 @@
     <text class="synopsis-content {{isFolded ? 'fold' : ''}}" catchtap="handleContent">{{summary}}</text>
   </view>
   <!-- 导演 -->
-  <template is="personList" data="{{listName:'导演',personList: directors}}"/>
+  <template is="personList" data="{{listName:'导演',personList: directors}}" />
   <!-- 演员 -->
-  <template is="personList" data="{{listName:'演员',personList: casts}}"/>
+  <template is="personList" data="{{listName:'演员',personList: casts}}" />
 </view>

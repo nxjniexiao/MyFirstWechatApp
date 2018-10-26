@@ -57,5 +57,12 @@ Page({
     this.setData({
       isFolded: !this.data.isFolded
     });
+  },
+  // 点击显示大图
+  showImage: function(event) {
+    const url = event.target.dataset.url;
+    wx.previewImage({
+      urls: [url],
+    });
   }
 })
