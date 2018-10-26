@@ -2,7 +2,7 @@
 <view class="container">
   <view class="header">
     <image class="post-pic" src="{{post.contentPic}}"></image>
-    <image class="music-img" catchtap="handleMusic" src="{{musicIsPlaying?'/images/icons/music-stop.png':'/images/icons/music-start.png'}}"></image>
+    <!-- <image class="music-img" catchtap="handleMusic" src="{{musicIsPlaying?'/images/icons/music-stop.png':'/images/icons/music-start.png'}}"></image> -->
   </view>
   <view class="post-info">
     <image class="avatar" src="{{post.authorAvatar}}"></image>

@@ -15,7 +15,7 @@
 </template>
 <!-- 人物列表模板 -->
 <template name="personList">
-  <view class="person-container background-color">
+  <view class="person-container">
     <text class="title">{{listName}}</text>
     <scroll-view class="person" scroll-x="true">
       <template 
@@ -31,7 +31,7 @@
   <!-- 头部 -->
   <view class="movie-header-container">
     <view class="blur" style="background-image:url({{images.large}})"></view>
-    <view class="movie-header background-color">
+    <view class="movie-header">
       <image class="movie-poster" src="{{images.large}}" />
       <view class="movie-info">
         <text class="title">{{title}}</text>
@@ -47,7 +47,7 @@
     </view>
   </view>
   <!-- 剧情简介 -->
-  <view class="movie-synopsis-container background-color">
+  <view class="movie-synopsis-container">
     <text class="synopsis-title">剧情简介</text>
     <text class="synopsis-content {{isFolded ? 'fold' : ''}}" catchtap="handleContent">{{summary}}</text>
   </view>

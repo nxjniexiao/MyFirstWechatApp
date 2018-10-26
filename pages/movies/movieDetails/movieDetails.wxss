@@ -1,5 +1,5 @@
 /* pages/movies/movieDetails/movieDetails.wxss */
-.background-color {
+page{
   background-color: rgba(124, 126, 102, 0.5);
 }
 /* 电影条目信息模板样式 */
@@ -27,7 +27,10 @@ text {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.movie-details-container {
+  /* 修正scroll-view 过宽，导致页面大于屏幕宽度 */
+  overflow: hidden;
+}
 /* 电影详情页面头部 */
 .movie-header-container {
   position: relative;

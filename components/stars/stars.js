@@ -7,7 +7,6 @@ Component({
     score: {
       type: Number,
       observer: function(newVal, oldVal, changePath){
-        console.log(newVal);
         this.setData({
           fixedScore: newVal.toFixed(1),
           starsArray: this.getStarsArray(newVal)
