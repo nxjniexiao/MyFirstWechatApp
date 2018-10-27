@@ -2,6 +2,9 @@
 + 新闻页面的数据来自本地 js 文件；
 + 电影页面的数据使用了豆瓣提供的 API。
 
+微信扫面下方的程序码即可进入小程序。<br>
+<div style="margin: 10px 0"><img src="pics-for-readme/scan-258x258.jpg" width="129px"/></div>
+
 ### 1. 起始页面
 
 进入小程序首先会看到起始页面。<br>
